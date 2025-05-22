@@ -27,7 +27,7 @@ const Header = () => {
       <div className="md:w-1/4 animate-fade-in">
         <Link href="/">
           <h1 className="text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-green-600">
-            Is This Coin Dead?
+            IsThisCoinDead?
           </h1>{" "}
         </Link>
       </div>

@@ -1,7 +1,14 @@
 import axios from "axios";
 import CoinInfoPage from "./info";
 
-const CoinPage = async ({ params: { coin } }: any) => {
+interface CoinPageProps {
+  params: Promise<{
+    coin: string;
+  }>;
+}
+
+const CoinPage = async ({ params }: CoinPageProps) => {
+  const { coin } = await params;
   let coinData;
   try {
     const response = await axios.get(
@@ -20,7 +27,8 @@ const CoinPage = async ({ params: { coin } }: any) => {
     const coinId = Object.keys(response.data.data)[0];
     // Access the coin data using the ID
     coinData = response.data.data[coinId];
-  } catch (err) {
+  } catch (error: unknown) {
+    console.error("Error fetching coin data:", error);
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] p-8 text-center">
         <div className="border border-neutral-700 rounded-lg p-6 max-w-md">
@@ -28,8 +36,9 @@ const CoinPage = async ({ params: { coin } }: any) => {
             Coin Not Found
           </h1>
           <p className="text-white mb-4">
-            Sorry, we couldn't find information for "{coin}". This coin might
-            not exist or there could be an issue with our data provider.
+            Sorry, we couldn&apos;t find information for &quot;{coin}&quot;.
+            This coin might not exist or there could be an issue with our data
+            provider.
           </p>
           <div className="flex flex-col gap-3">
             <p className="text-sm text-white">

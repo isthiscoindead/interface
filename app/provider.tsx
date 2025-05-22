@@ -11,6 +11,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { structuralSharing } from "@wagmi/core/query";
 import { AppProgressBar } from "next-nprogress-bar";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const config = getDefaultConfig({
   appName: "Is This Coin Dead?",
@@ -38,8 +39,11 @@ const Provider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
             overlayBlur: "large",
           })}
         >
-          <Header />
-          {children}
+          <div className="bg-neutral-900 min-h-screen">
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </RainbowKitProvider>
       </QueryClientProvider>
       <AppProgressBar
